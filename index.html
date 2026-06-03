@@ -11,9 +11,9 @@
         #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; }
         .container { position: relative; z-index: 2; background: rgba(15, 15, 25, 0.95); border: 2px solid rgba(0, 255, 255, 0.3); padding: 25px; border-radius: 30px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 0 30px rgba(0, 255, 255, 0.1); }
         .logo-text { font-size: 40px; font-weight: 900; color: #fff; margin-bottom: 20px; text-shadow: 0 0 10px #00ffff; }
+        .track-list { max-height: 350px; overflow-y: auto; }
         .track-item { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.06); padding: 12px; margin-bottom: 10px; border-radius: 12px; cursor: pointer; border: 1px solid rgba(0, 255, 255, 0.2); text-align: right; }
         .action-box { margin-top: 20px; padding: 15px; border: 1px dashed #00ffff; border-radius: 20px; font-size: 13px; line-height: 1.8; }
-        
         .menu-icon { position: absolute; top: 15px; right: 15px; font-size: 20px; cursor: pointer; color: #00ffff; z-index: 30; }
         .sidebar { height: 100%; width: 0; position: fixed; z-index: 40; top: 0; right: 0; background: #000; overflow-x: hidden; transition: 0.3s; padding-top: 60px; border-left: 1px solid #00ffff; }
         .sidebar a { padding: 15px 20px; text-decoration: none; font-size: 16px; color: #fff; display: block; cursor: pointer; }
@@ -33,7 +33,7 @@
 
     <div class="container">
         <div class="logo-text">LISTAM</div>
-        <div id="track-list"></div>
+        <div id="track-list" class="track-list"></div>
         <div class="action-box">
             توی کانال زیر توی روبیکا روی اولین پیام ری‌اکشن بزنید، بالا ۲۰ تا ری‌اکشن مختلف خورد آهنگ‌های بیشتری می‌زاریم! 💖<br>
             <div style="color:#00ffff; font-weight:bold; margin-top:10px;">ID Channel Telegram: @LISTAM11</div>
@@ -66,7 +66,11 @@
             { name: "Ruz Ashenayi", artist: "Farhad Jahangiri", src: "https://dl.musicdel.ir/Music/1401/01/farhad_jahangiri_rooz_ashnaei.mp3" },
             { name: "Bi Monam Egeh Rafti", artist: "not found", src: "https://dl.musicsweb.ir/musics/03/10/Dorcci%20-%20Ghatle%20Amd%20-%20320.mp3" },
             { name: "Bi Plane", artist: "not found", src: "https://irsv.upmusics.com/AliBZ/Bi%20palne%20Nok%20Tiz%20(320).mp3" },
-            { name: "Albert Einstein", artist: "Hossein TM", src: "https://dl.aba-music.ir/music/1404/01/AlbertEinstein.mp3" }
+            { name: "Albert Einstein", artist: "Hossein TM", src: "https://dl.aba-music.ir/music/1404/01/AlbertEinstein.mp3" },
+            { name: "I miss you", artist: "Amir Tataloo", src: "https://dl.musictaj.com/song403/bhr/Man%20Delam%20Tange.mp3" },
+            { name: "Mono Taneya Nezar", artist: "not found", src: "https://dls.musics-fa.com/tagdl/6e41/Arash%20Vala%20-%20Yadete%20(320).mp3" },
+            { name: "Fandak Ko", artist: "not found", src: "https://dl.musicsweb.ir/musics/03/06/Unknown%20Artist%20-%20Fandak%20Ko%20-%20320.mp3" },
+            { name: "they don't about us bts", artist: "BTS", src: "https://dl.musicdel.ir/tag/music/1405/01/05/BTS%20-%20they%20don%20t%20know%20bout%20us%20(320).mp3" }
         ];
 
         const listDiv = document.getElementById('track-list');
