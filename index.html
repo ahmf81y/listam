@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LISTAM | Music Hub</title>
+    <title>LISTAM</title>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
     <style>
-        body { background-color: #030307; color: white; font-family: 'Vazirmatn', sans-serif; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { background: rgba(15, 15, 25, 0.95); border: 2px solid rgba(0, 255, 255, 0.3); padding: 20px; border-radius: 30px; width: 90%; max-width: 400px; text-align: center; }
-        .logo-text { font-size: 35px; font-weight: 900; color: #fff; margin-bottom: 15px; text-shadow: 0 0 10px #00ffff; }
-        .track-list { max-height: 300px; overflow-y: auto; margin-bottom: 15px; text-align: right; }
-        .track-item { background: rgba(255,255,255,0.06); padding: 10px; margin-bottom: 8px; border-radius: 12px; cursor: pointer; border: 1px solid rgba(0, 255, 255, 0.2); display: flex; justify-content: space-between; align-items: center; }
-        .player-box { background: rgba(0, 255, 255, 0.1); padding: 10px; border-radius: 15px; border: 1px solid #00ffff; }
+        body { background-color: #030307; color: white; font-family: 'Vazirmatn', sans-serif; margin: 0; display: flex; justify-content: center; height: 100vh; }
+        .container { background: rgba(15, 15, 25, 0.95); border: 2px solid rgba(0, 255, 255, 0.3); padding: 15px; border-radius: 20px; width: 90%; max-width: 400px; display: flex; flex-direction: column; height: 95vh; }
+        .logo-text { font-size: 30px; font-weight: 900; text-align: center; margin-bottom: 10px; color: #fff; text-shadow: 0 0 10px #00ffff; }
+        .track-list { flex-grow: 1; overflow-y: auto; margin-bottom: 10px; }
+        .track-item { background: rgba(255,255,255,0.06); padding: 8px 12px; margin-bottom: 8px; border-radius: 12px; cursor: pointer; border: 1px solid rgba(0, 255, 255, 0.2); display: flex; justify-content: space-between; align-items: center; }
+        .player-box { background: rgba(0, 255, 255, 0.1); padding: 8px; border-radius: 15px; border: 1px solid #00ffff; }
+        audio { width: 100%; height: 35px; }
     </style>
 </head>
 <body>
@@ -19,7 +20,7 @@
         <div class="logo-text">LISTAM</div>
         <div id="track-list" class="track-list"></div>
         <div class="player-box">
-            <audio id="main-audio" controls style="width:100%;"></audio>
+            <audio id="main-audio" controls></audio>
         </div>
     </div>
 
@@ -65,8 +66,8 @@
             listDiv.innerHTML += `
                 <div class="track-item" onclick="audio.src='${t.src}'; audio.play();">
                     <div style="text-align:right;">
-                        <div style="font-weight:bold; font-size:14px;">${t.name}</div>
-                        <div style="font-size:11px; color:#aaa;">${t.artist}</div>
+                        <div style="font-weight:bold; font-size:13px;">${t.name}</div>
+                        <div style="font-size:10px; color:#aaa;">${t.artist}</div>
                     </div>
                     <span>🎵</span>
                 </div>`;
