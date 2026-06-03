@@ -3,28 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LISTAM</title>
+    <title>LISTAM | Music Hub</title>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <style>
-        body { background-color: #030307; color: white; font-family: 'Vazirmatn', sans-serif; margin: 0; display: flex; justify-content: center; height: 100vh; }
-        .container { background: rgba(15, 15, 25, 0.95); border: 2px solid rgba(0, 255, 255, 0.3); padding: 15px; border-radius: 20px; width: 90%; max-width: 400px; display: flex; flex-direction: column; height: 95vh; }
-        .logo-text { font-size: 30px; font-weight: 900; text-align: center; margin-bottom: 10px; color: #fff; text-shadow: 0 0 10px #00ffff; }
-        .track-list { flex-grow: 1; overflow-y: auto; margin-bottom: 10px; }
-        .track-item { background: rgba(255,255,255,0.06); padding: 8px 12px; margin-bottom: 8px; border-radius: 12px; cursor: pointer; border: 1px solid rgba(0, 255, 255, 0.2); display: flex; justify-content: space-between; align-items: center; }
-        .player-box { background: rgba(0, 255, 255, 0.1); padding: 8px; border-radius: 15px; border: 1px solid #00ffff; }
-        audio { width: 100%; height: 35px; }
+        body { background-color: #030307; color: white; font-family: 'Vazirmatn', sans-serif; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; }
+        #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; }
+        .container { position: relative; z-index: 2; background: rgba(15, 15, 25, 0.95); border: 2px solid rgba(0, 255, 255, 0.3); padding: 25px; border-radius: 30px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 0 30px rgba(0, 255, 255, 0.1); }
+        .logo-text { font-size: 40px; font-weight: 900; color: #fff; margin-bottom: 20px; text-shadow: 0 0 10px #00ffff; }
+        .track-list { max-height: 350px; overflow-y: auto; }
+        .track-item { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.06); padding: 12px; margin-bottom: 10px; border-radius: 12px; cursor: pointer; border: 1px solid rgba(0, 255, 255, 0.2); text-align: right; }
+        .action-box { margin-top: 20px; padding: 15px; border: 1px dashed #00ffff; border-radius: 20px; font-size: 13px; line-height: 1.8; }
+        .menu-icon { position: absolute; top: 15px; right: 15px; font-size: 20px; cursor: pointer; color: #00ffff; z-index: 30; }
+        .sidebar { height: 100%; width: 0; position: fixed; z-index: 40; top: 0; right: 0; background: #000; overflow-x: hidden; transition: 0.3s; padding-top: 60px; border-left: 1px solid #00ffff; }
+        .sidebar a { padding: 15px 20px; text-decoration: none; font-size: 16px; color: #fff; display: block; cursor: pointer; }
+        .modal { display: none; position: fixed; z-index: 50; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center; }
+        .modal-content { background: #111; padding: 25px; border-radius: 20px; width: 85%; text-align: center; border: 1px solid #00ffff; }
     </style>
 </head>
 <body>
+    <div id="particles-js"></div>
+    <div class="menu-icon" onclick="document.getElementById('side').style.width='200px'">☰</div>
+    
+    <div id="side" class="sidebar">
+        <span style="position:absolute; top:10px; left:20px; cursor:pointer;" onclick="document.getElementById('side').style.width='0'">×</span>
+        <a href="https://abzarek.ir/service-p/msg/4584969">💬 ثبت درخواست</a>
+        <a onclick="showAbout()">ℹ️ درباره ما</a>
+    </div>
+
     <div class="container">
         <div class="logo-text">LISTAM</div>
         <div id="track-list" class="track-list"></div>
-        <div class="player-box">
-            <audio id="main-audio" controls></audio>
+        <div class="action-box">
+            توی کانال زیر توی روبیکا روی اولین پیام ری‌اکشن بزنید، بالا ۲۰ تا ری‌اکشن مختلف خورد آهنگ‌های بیشتری می‌زاریم! 💖<br>
+            <div style="color:#00ffff; font-weight:bold; margin-top:10px;">ID Channel Telegram: @LISTAM11</div>
+            <div style="color:#00ffff; font-weight:bold;">ID Channel Rubika: @LISTAM1</div>
+            <div style="margin-top:10px; color:#aaa; font-size:11px;">امیدوارم از سایت لذت ببرید 🦢</div>
         </div>
     </div>
 
+    <div id="aboutModal" class="modal" onclick="this.style.display='none'">
+        <div class="modal-content">
+            <p>سلام دوست عزیز به سایت LISTAM خوش آمدید❤ ممنون که برای گوش دادن آهنگ‌هاتون سایت مارو انتخاب کردید🤗</p>
+            <p style="color:#00ffff">آیدی چنل تلگرام : @LISTAM11 👺</p>
+            <p style="color:#00ffff">آیدی چنل روبیکا: @LISTAM1 👾</p>
+            <hr style="border: 0; border-top: 1px solid #333; margin: 15px 0;">
+            <p style="font-size: 13px;">تنها ادمین سایت LISTAM توی روبیکا هست و در هیچ اپلیکیشن دیگری ادمین نداریم فعلا</p>
+            <p style="color:#00ff66; font-weight:bold;">آیدی ادمین در روبیکا : @AMIR_878g 🤗</p>
+        </div>
+    </div>
+
+    <audio id="main-audio"></audio>
+
     <script>
+        function showAbout() { document.getElementById('aboutModal').style.display='flex'; document.getElementById('side').style.width='0'; }
+        const audio = new Audio();
         const tracks = [
             { name: "Baby Nane's song", artist: "Mohsen Lorestani", src: "https://dl.rozmusic.com/Music/1400/05/09/Mohsen%20Lorestani%20-%20Bache%20Nane.mp3" },
             { name: "hey monaliza", artist: "Koorosh", src: "https://dl.musicsweb.ir/musics/01/12/unknown%20-%20hey%20monaliza%20-%20320%20-%20musicsweb.ir.mp3" },
@@ -52,7 +85,7 @@
             { name: "I'll Tell You Later", artist: "not found", src: "https://dl.rozmusic.com/Music/1404/03/12/Navid%20%26%20Nima%20-%20Joonam%20Barat%20Bege.mp3" },
             { name: "I Should Have Gone", artist: "Chavoshi", src: "https://dl.rozmusic.com/Music/1402/03/12/Mohsen%20Chavoshi%20-%20Man%20Bayad%20Miraftam.mp3" },
             { name: "Cpehmin Mondeh Bud", artist: "Chavoshi", src: "https://dl.rozmusic.com/Music/1403/07/23/Mohsen%20Chavoshi%20-%20Hamin%20Moonde%20Bood.mp3" },
-            { name: "Wall Clock", artist: "Chavoshi", src: "https://dl.musicdel.ir/Music/1403/11/17/Mohsen%20Chavoshi%20-%20Saat%20Divari.mp3" },
+            { name: "Wall Clock", artist: "Chavoshi", src: "https://dl.rozmusic.com/Music/1403/11/17/Mohsen%20Chavoshi%20-%20Saat%20Divari.mp3" },
             { name: "Ajab Omadi", artist: "Chavoshi", src: "https://dl.rozmusic.com/Music/1404/09/24/Mohsen%20Chavoshi%20-%20Ajab%20Oomadi.mp3" },
             { name: "Remix Of The Group Betage", artist: "not found", src: "https://dl.mokhtalefmusic.com/music/1403/03/10/Hayedeh%20To%20Dar%20Masafate%20Barani.mp3" },
             { name: "Akh Jana", artist: "not found", src: "https://irsv.upmusics.com/AliBZ/Akh%20Jana%20Nazanin%20Az%20Eshgh%20%20(320).mp3" },
@@ -61,17 +94,26 @@
         ];
 
         const listDiv = document.getElementById('track-list');
-        const audio = document.getElementById('main-audio');
         tracks.forEach(t => {
             listDiv.innerHTML += `
-                <div class="track-item" onclick="audio.src='${t.src}'; audio.play();">
-                    <div style="text-align:right;">
-                        <div style="font-weight:bold; font-size:13px;">${t.name}</div>
-                        <div style="font-size:10px; color:#aaa;">${t.artist}</div>
-                    </div>
+                <div class="track-item" onclick="playTrack('${t.src}', this)">
+                    <div><div style="font-weight:bold; font-size:14px;">${t.name}</div><div style="font-size:11px; color:#888;">${t.artist}</div></div>
                     <span>🎵</span>
                 </div>`;
         });
+
+        function playTrack(src, el) {
+            if (audio.src.includes(src) && !audio.paused) {
+                audio.pause();
+                el.style.borderColor = 'rgba(0, 255, 255, 0.2)';
+            } else {
+                audio.src = src; audio.play();
+                document.querySelectorAll('.track-item').forEach(i => i.style.borderColor = 'rgba(0, 255, 255, 0.2)');
+                el.style.borderColor = '#00ff66';
+            }
+        }
+        
+        particlesJS('particles-js', {"particles": {"number": {"value": 80}, "color": {"value": "#00ffff"}, "opacity": {"value": 0.3}, "move": {"enable": true, "speed": 1}}});
     </script>
 </body>
 </html>
